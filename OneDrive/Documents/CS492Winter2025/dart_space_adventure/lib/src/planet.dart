@@ -1,8 +1,10 @@
 class Planet {
-  final String? name;
-  final String? description;
+  final String name;
+  final String description;
 
 
-Planet({this.name, this.description});
+Planet({required this.name, required this.description});
+
+Planet.nullPlanet(): name = "Null", description ="Null";
 }
 
