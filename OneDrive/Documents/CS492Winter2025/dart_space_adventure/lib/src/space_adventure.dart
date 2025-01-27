@@ -1,18 +1,31 @@
-import 'package:dart_space_adventure/dart_space_adventure.dart' as dart_space_adventure;
 import 'dart:io';
+import 'planetary_system.dart';
+
+import 'package:dart_space_adventure/dart_space_adventure.dart';
+
+class SpaceAdventure {
+PlanetarySystem? planetarySystem;
+
+SpaceAdventure({this.planetarySystem});
+
+void start(){
+  printGreeting();
+  printIntroduction(responseToPrompt("What is your name?"));
+  print('Let\'s go on an adventure\n');
+  travel(
+    promptForRandomOrSpecificDestination(
+      'Shall I randomly choose a planet for you to visit? (Y or N)'
+    )
+    );   
+}
 
 void printGreeting() {
   print (
-        'Welcome to the Solar System!\n'
+        
+        'Welcome to the ${planetarySystem?.name ?? "Unknown"} System!\n'
         'There are 8 planets to explore.\n'
         );
 }
-
-// String? getName() {
-//   print('What is your name?');
-//   return stdin.readLineSync(); 
-// }
-
 
 void printIntroduction(String? name){
   print('Nice to meet you, $name. My name is Eliza, I\'m an old friend of Alexa.');
@@ -56,10 +69,6 @@ if (answer == 'Y'){
 return false;
 }
 
-// String? randomOrNot(){
-//   return stdin.readLineSync();
-// }
-
 String? responseToPrompt(String prompt){
   
   print(prompt);
@@ -68,14 +77,4 @@ String? responseToPrompt(String prompt){
 
 }
 
-void main(List<String> arguments) {
-  printGreeting();
-  printIntroduction(responseToPrompt("What is your name?"));
-  print('Let\'s go on an adventure\n');
-  travel(
-    promptForRandomOrSpecificDestination(
-      'Shall I randomly choose a planet for you to visit? (Y or N)'
-    )
-  
-    );
 }
