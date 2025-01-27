@@ -1,17 +1,11 @@
+import 'planet.dart';
 class PlanetarySystem {
-  String? name;
+  final String? name;
+  final List<Planet> planets;
 
-  // PlanetarySystem() : name = "Unnamed System";
+  PlanetarySystem({this.name = "Unnamed System", this.planets = const[]});
 
-  // PlanetarySystem.withName(this.name);
-
-  PlanetarySystem({this.name = "Unnamed System"});
+int get numberOfPlanets => planets.length;
 
 }
 
-
-
-
-
-var ps = PlanetarySystem();
-var dagobah = PlanetarySystem(name: "Dagobah System");

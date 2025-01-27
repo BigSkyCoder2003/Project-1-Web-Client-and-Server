@@ -1,10 +1,10 @@
 import 'dart:io';
+import 'dart:math';
 import 'planetary_system.dart';
-
 import 'package:dart_space_adventure/dart_space_adventure.dart';
 
 class SpaceAdventure {
-PlanetarySystem? planetarySystem;
+final PlanetarySystem? planetarySystem;
 
 SpaceAdventure({this.planetarySystem});
 
@@ -20,33 +20,33 @@ void start(){
 }
 
 void printGreeting() {
-  print (
-        
-        'Welcome to the ${planetarySystem?.name ?? "Unknown"} System!\n'
-        'There are 8 planets to explore.\n'
-        );
+  print ('Welcome to the ${planetarySystem?.name ?? "Unknown"}!');
+  print('There are ${planetarySystem?.numberOfPlanets} planets in the system');
 }
 
 void printIntroduction(String? name){
   print('Nice to meet you, $name. My name is Eliza, I\'m an old friend of Alexa.');
 }
 
-void travelToRandomPlanet(){
-    print("placeholder");
-
+void travelToRandomDestination(){
+    final index = Random().nextInt(planetarySystem?.numberOfPlanets ?? 0);
+    travelTo(planetarySystem?.planets[index].name);
 }
 
-void travelTo(String? planetName){
-print(
-    'Traveling to $planetName...'
-    'Arrived at $planetName. A very cold planet, furthest form the sun.'
-  );
+void travelTo(String? destination){
+print('Traveling to $destination...');
+planetarySystem?.planets.forEach((planet){
+if (planet.name == destination){
+print('Arrived at $destination. ${planet.description}');
+}
+});
+    
 
 }
 
 void travel(bool randomDestination){
 if (randomDestination){
-  travelToRandomPlanet();
+  travelToRandomDestination();
 }
 else{
   travelTo((responseToPrompt('Name the planet you would like to visit.')));
