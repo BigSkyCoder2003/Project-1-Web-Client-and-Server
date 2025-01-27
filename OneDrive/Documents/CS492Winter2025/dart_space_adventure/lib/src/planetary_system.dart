@@ -19,5 +19,15 @@ Planet randomPlanet() {
 Planet planetWithName(String name){
 return planets.firstWhere( (planet) => planet.name == name, orElse: () => Planet.nullPlanet());
 }
+
+factory PlanetarySystem.fromJson(Map<String, dynamic> json) {
+  var planetList = json['planets'] as List;
+  List<Planet> planetsObjects = planetList.map((planetJson) => Planet.fromJson(planetJson)).toList();
+  return PlanetarySystem(
+    name: json['name'],
+    planets: planetsObjects,
+  );
+
+}
 }
 
